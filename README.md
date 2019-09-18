@@ -11,7 +11,7 @@ Web app page
    + [ ] View detail information of a product
    + [ ] Has a button to add this product to cart
    + [ ] Input for enter number of items to add to cart
- - [ ]Manage cart
+ - [ ] Manage cart
    + [ ] List all items in cart
    + [ ] Remove an item from cart
    + [ ] Increase/Decrease number of items in cart
