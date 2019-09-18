@@ -5,8 +5,7 @@ Web app page
     + [ ] New products / Home
  - [ ] View products by categories
  - [ ] View new products
-   + [ ] Products list [List all products in DESC order by createdAt field/Each product has buttons for add to cart (button for increase/decrese number of added item)]
-     . Pagination
+   + [ ] Products list [List all products in DESC order by createdAt field/Each product has buttons for add to cart (button for increase/decrese number of added item)/Pagination]
  - [ ] View product detail
    + [ ] View detail information of a product
    + [ ] Has a button to add this product to cart
