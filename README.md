@@ -1,6 +1,6 @@
 Web app page
  - [ ] Navigator
-    + [ ] Sign in button or user icon at top-right corner
+    + [x] Sign in button or user icon at top-right corner
     + [ ] Categories
     + [ ] New products / Home
  - [ ] View products by categories
@@ -8,11 +8,11 @@ Web app page
    + [ ] Products list [List all products in DESC order by createdAt field/Each product has buttons for add to cart (button for increase/decrese number of added item)/Pagination]
  - [ ] View product detail
    + [ ] View detail information of a product
-   + [ ] Has a button to add this product to cart
+   + [x] Has a button to add this product to cart
    + [ ] Input for enter number of items to add to cart
  - [ ] Manage cart
-   + [ ] List all items in cart
-   + [ ] Remove an item from cart
+   + [x] List all items in cart
+   + [x] Remove an item from cart
    + [ ] Increase/Decrease number of items in cart
  - [ ] Sign In / Sign Up
  - [ ] Logout

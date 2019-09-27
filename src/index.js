@@ -11,20 +11,28 @@ import * as serviceWorker from "./serviceWorker";
 // import CartItemComp from './components/order/CartItemComp'
 // import CartListComp from './components/order/CartListComp'
 // import NavigationBarComp from './components/common/NavigationBarComp'
-import _Drawer from "./components/common/_Drawer";
-import UserAuthDialogComp from "./components/user/UserAuthDialogComp";
-import UserFormDialogComp from "./components/user/UserFormDialogComp";
-import UserDetailsDialogComp from "./components/user/UserDetailsDialogComp";
-import CartListComp from "./components/order/CartListComp";
-import ProductDetailsComp from "./components/product/ProductDetailsComp";
-import CategoryDrawerComp from "./components/navigation/CategoryDrawerComp"
-import NavigationBar from "./components/navigation";
+// import _Drawer from "./components/common/_Drawer";
+// import UserAuthDialogComp from "./components/user/UserAuthDialogComp";
+// import UserFormDialogComp from "./components/user/UserFormDialogComp";
+// import UserDetailsDialogComp from "./components/user/UserDetailsDialogComp";
+// import CartListComp from "./components/order/CartListComp";
+// import ProductDetailsComp from "./components/product/ProductDetailsComp";
+// import CategoryDrawerComp from "./components/navigation/CategoryDrawerComp";
+// import NavigationBar from "./components/navigation";
 import App from "./App";
+import { Provider } from "react-redux";
+import { store } from "./store";
+
 // const props = {
 //     placeholder: "hello world",
 //     disabled: true,
 // }
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

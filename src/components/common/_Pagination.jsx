@@ -16,10 +16,10 @@ const _Pagination = ({ pages, pageNum, maxPage, handleClick }) => {
 
   return (
     <Grid container>
-      <_Button disabled={pageNum == 0} onClick={() => handleClick(0)}>
+      <_Button disabled={pageNum === 0} onClick={() => handleClick(0)}>
         <FirstPageIcon />
       </_Button>
-      <_Button disabled={pageNum == 0} onClick={() => handleClick(pageNum - 1)}>
+      <_Button disabled={pageNum === 0} onClick={() => handleClick(pageNum - 1)}>
         <NavigateBeforeIcon />
       </_Button>
 
@@ -31,8 +31,8 @@ const _Pagination = ({ pages, pageNum, maxPage, handleClick }) => {
       {pages.length <= maxPage
         ? pages.map(page => (
             <_Button
-              disabled={page == pageNum}
-              variant={page == pageNum && "outlined"}
+              disabled={page === pageNum}
+              variant={page === pageNum && "outlined"}
               onClick={() => handleClick(page)}
             >
               <_Typography>{page + 1}</_Typography>
@@ -43,8 +43,8 @@ const _Pagination = ({ pages, pageNum, maxPage, handleClick }) => {
             page =>
               page < ONE_SIDE_TRUNCATED_PAGE_SHOWN && (
                 <_Button
-                  disabled={page == pageNum}
-                  variant={page == pageNum && "outlined"}
+                  disabled={page === pageNum}
+                  variant={page === pageNum && "outlined"}
                   onClick={() => handleClick(page)}
                 >
                   <_Typography>{page + 1}</_Typography>
@@ -56,8 +56,8 @@ const _Pagination = ({ pages, pageNum, maxPage, handleClick }) => {
             page =>
               page >= pages.length - ONE_SIDE_TRUNCATED_PAGE_SHOWN && (
                 <_Button
-                  disabled={page == pageNum}
-                  variant={page == pageNum && "outlined"}
+                  disabled={page === pageNum}
+                  variant={page === pageNum && "outlined"}
                   onClick={() => handleClick(page)}
                 >
                   <_Typography>{page + 1}</_Typography>
@@ -69,8 +69,8 @@ const _Pagination = ({ pages, pageNum, maxPage, handleClick }) => {
               page >= pageNum - TO_LEFT_REAR &&
               page <= pageNum + TO_RIGHT_REAR && (
                 <_Button
-                  disabled={page == pageNum}
-                  variant={page == pageNum && "outlined"}
+                  disabled={page === pageNum}
+                  variant={page === pageNum && "outlined"}
                   onClick={() => handleClick(page)}
                 >
                   <_Typography>{page + 1}</_Typography>
@@ -83,13 +83,13 @@ const _Pagination = ({ pages, pageNum, maxPage, handleClick }) => {
         </_Button>
       )}
       <_Button
-        disabled={pageNum == pages.length - 1}
+        disabled={pageNum === pages.length - 1}
         onClick={() => handleClick(pageNum + 1)}
       >
         <NavigateNextIcon />
       </_Button>
       <_Button
-        disabled={pageNum == pages.length - 1}
+        disabled={pageNum === pages.length - 1}
         onClick={() => handleClick(pages.length - 1)}
       >
         <LastPageIcon />

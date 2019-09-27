@@ -1,25 +1,32 @@
 import React from "react";
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import "./App.css";
 import NavigationBar from "./components/navigation";
 import ProductListComp from "./components/product/ProductListComp";
 import Grid from "@material-ui/core/Grid";
-import CartListComp from "./components/order/CartListComp";
+import CartListComp from "./containers/CartListCont";
+import { connect } from "react-redux";
 
-function App() {
+function App({ isLoginSuccess }) {
   return (
     <div>
       <NavigationBar />
       <Grid container spacing={3}>
-        <Grid item xs={9}>
+        <Grid item xs={isLoginSuccess ? 9 : 12}>
           <ProductListComp />
         </Grid>
-        <Grid item xs={3}>
-          <CartListComp />
+        <Grid item xs={isLoginSuccess ? 3 : 0}>
+          {isLoginSuccess && <CartListComp />}
         </Grid>
       </Grid>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    isLoginSuccess: state.logIn.isLoginSuccess
+  };
+};
+
+export default connect(mapStateToProps)(App);

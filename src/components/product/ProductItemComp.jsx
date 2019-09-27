@@ -11,6 +11,7 @@ import _CardMedia from "../common/_CardMedia";
 // import Toolbar from "@material-ui/core/Toolbar";
 import _Typography from "../common/_Typography";
 import { makeStyles } from "@material-ui/core/styles";
+// import { keys } from "@material-ui/core/styles/createBreakpoints";
 // import Container from "@material-ui/core/Container";
 
 const useStyles = makeStyles(theme => ({
@@ -31,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ProductItemComp = ({title, image}) => {
+const ProductItemComp = ({ title, image, price, addToCart }) => {
   const classes = useStyles();
 
   return (
@@ -46,13 +47,17 @@ const ProductItemComp = ({title, image}) => {
           <_Typography gutterBottom variant="h5" component="h2">
             Game no.{title}
           </_Typography>
-          <_Typography >
-            This is a media card. You can use this section to describe the
-            content.
+          <_Typography style={{ textAlign: "right", color: "grey" }}>
+            ${price}
           </_Typography>
         </_CardContent>
         <_CardActions>
-          <_Button size="small" color="primary">
+          <_Button
+            size="small"
+            color="primary"
+            style={{ float: "right" }}
+            onClick={() => addToCart(title, price)}
+          >
             Add to Cart
           </_Button>
         </_CardActions>
