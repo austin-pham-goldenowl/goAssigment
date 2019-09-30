@@ -8,6 +8,7 @@ import ProductItemComp from "../../containers/ProductItemCont";
 // import _Button from "../common/_Button";
 // import _Typography from "../common/_Typography";
 import _Pagination from "../common/_Pagination";
+import ProductDetailsComp from "./ProductDetailsComp";
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -41,9 +42,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ProductListComp = () => {
-  const ITEM_PER_PAGE = 6;
-  const MAX_PAGE_SHOWN = 10;
+const ProductListComp = ({ isLoginSuccess }) => {
+  const ITEM_PER_PAGE = 15;
+  const MAX_PAGE_SHOWN = 8;
   const classes = useStyles();
   const [pagination, setPagination] = React.useState({
     pageNum: 0,
@@ -60,38 +61,50 @@ const ProductListComp = () => {
   };
 
   const list = [...new Array(90).keys()];
-  const pages = [...new Array(Math.ceil(list.length / ITEM_PER_PAGE)).keys()];
   return (
     <React.Fragment>
       <CssBaseline />
       <main>
         <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>
-            {list.map(
-              item =>
+            {list.map(item => {
+              let randomPrice = (Math.random() * 200).toFixed(2);
+              let itemImage =
+                item % 5 === 0
+                  ? "https://i.redd.it/ijf7zto8tll01.jpg"
+                  : item % 3 === 0
+                  ? "https://pbs.twimg.com/media/DcshPU3VwAAxkh8.jpg"
+                  : item % 2 === 0
+                  ? "https://i.pinimg.com/originals/4c/f7/d4/4cf7d436c53382fcc9050817d418673a.png"
+                  : "https://i.pinimg.com/originals/a5/40/6b/a5406bf9caa49cc8e17d58100015d2d2.jpg";
+
+              return (
                 item >= pagination.start &&
                 item < pagination.end && (
                   <Grid item key={item} xs={12} sm={6} md={4}>
                     <ProductItemComp
+                      isLoginSuccess={isLoginSuccess}
                       title={item}
-                      image={
-                        item % 5 === 0
-                          ? "https://i.pinimg.com/originals/92/4b/01/924b013fba163d3fa9a666627dbc44b7.png"
-                          : item % 3 === 0
-                          ? "https://vignette.wikia.nocookie.net/monsterhunter/images/0/01/MHGen-Silverwind_Nargacuga_Render_001.png/revision/latest?cb=20160710150954"
-                          : item % 2 === 0
-                          ? "https://vignette.wikia.nocookie.net/monsterhunter/images/4/4f/MHWI-Barioth_Render_001.png/revision/latest/scale-to-width-down/2000?cb=20190821003727"
-                          : "https://vignette.wikia.nocookie.net/monsterhunter/images/f/f4/MHWI-Zinogre_Render_001.png/revision/latest/scale-to-width-down/2000?cb=20190829150309"
+                      image={itemImage}
+                      price={randomPrice}
+                      detailsButton={
+                        <ProductDetailsComp
+                          isLoginSuccess={isLoginSuccess}
+                          title={item}
+                          image={itemImage}
+                          price={randomPrice}
+                        />
                       }
-                      price={(Math.random()*200).toFixed(2)}
                     />
                   </Grid>
                 )
-            )}
+              );
+            })}
           </Grid>
           <br />
           <_Pagination
-            pages={pages}
+            list={list}
+            itemPerPage={ITEM_PER_PAGE}
             pageNum={pagination.pageNum}
             maxPage={MAX_PAGE_SHOWN}
             handleClick={handleClick}

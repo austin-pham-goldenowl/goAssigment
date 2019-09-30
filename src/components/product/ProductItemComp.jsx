@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 //MUI
 // import AppBar from "@material-ui/core/AppBar";
 import _Button from "../common/_Button";
@@ -11,6 +11,8 @@ import _CardMedia from "../common/_CardMedia";
 // import Toolbar from "@material-ui/core/Toolbar";
 import _Typography from "../common/_Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import _TextInput from "../common/_TextInput";
+import { Grid } from "@material-ui/core";
 // import { keys } from "@material-ui/core/styles/createBreakpoints";
 // import Container from "@material-ui/core/Container";
 
@@ -32,8 +34,18 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ProductItemComp = ({ title, image, price, addToCart }) => {
+const ProductItemComp = ({
+  isLoginSuccess,
+  details,
+  detailsButton,
+  closeButton,
+  title,
+  image,
+  price,
+  addToCart
+}) => {
   const classes = useStyles();
+  const [quantity, setQuantity] = useState();
 
   return (
     <div>
@@ -45,21 +57,43 @@ const ProductItemComp = ({ title, image, price, addToCart }) => {
         />
         <_CardContent className={classes.cardContent}>
           <_Typography gutterBottom variant="h5" component="h2">
-            Game no.{title}
+            Game #{title}
           </_Typography>
-          <_Typography style={{ textAlign: "right", color: "grey" }}>
-            ${price}
-          </_Typography>
+          <Grid container>
+            <Grid item>{details}</Grid>
+            <Grid item xs={8} sm={8} md={8}>
+              <_TextInput
+                type="number"
+                value={quantity}
+                style={{ width: "75%" }}
+                onChange={e => setQuantity(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={4} sm={4} md={4}>
+              <_Typography style={{ textAlign: "right", color: "grey" }}>
+                $ {price}
+              </_Typography>
+            </Grid>
+          </Grid>
         </_CardContent>
         <_CardActions>
           <_Button
+            disabled={!isLoginSuccess}
             size="small"
             color="primary"
             style={{ float: "right" }}
-            onClick={() => addToCart(title, price)}
+            onClick={() =>
+              // typeof quantity === "undefined"
+              //   ? addToCart(title, 1, price)
+              !isNaN(parseInt(quantity))
+                ? quantity > 0 && addToCart(title, quantity, price)
+                : addToCart(title, 1, price)
+            }
           >
-            Add to Cart
+            {isLoginSuccess ? "Add to Cart" : "Please Login"}
           </_Button>
+          {detailsButton}
+          {closeButton}
         </_CardActions>
       </_Card>
     </div>

@@ -8,7 +8,8 @@ import _Typography from "../common/_Typography";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import Grid from "@material-ui/core/Grid";
 
-const _Pagination = ({ pages, pageNum, maxPage, handleClick }) => {
+const _Pagination = ({ list, itemPerPage, pageNum, maxPage, handleClick }) => {
+  const pages = [...new Array(Math.ceil(list.length / itemPerPage)).keys()];
   const ONE_SIDE_TRUNCATED_PAGE_SHOWN = maxPage - 1;
   const TWO_SIDE_TRUNCATED_PAGE_SHOWN = maxPage - 2;
   const TO_LEFT_REAR = Math.floor(TWO_SIDE_TRUNCATED_PAGE_SHOWN / 2);

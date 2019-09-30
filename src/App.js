@@ -12,10 +12,10 @@ function App({ isLoginSuccess }) {
     <div>
       <NavigationBar />
       <Grid container spacing={3}>
-        <Grid item xs={isLoginSuccess ? 9 : 12}>
-          <ProductListComp />
+        <Grid item xs={isLoginSuccess ? 8 : 12}>
+          <ProductListComp isLoginSuccess={isLoginSuccess} />
         </Grid>
-        <Grid item xs={isLoginSuccess ? 3 : 0}>
+        <Grid item xs={isLoginSuccess ? 4 : 0}>
           {isLoginSuccess && <CartListComp />}
         </Grid>
       </Grid>

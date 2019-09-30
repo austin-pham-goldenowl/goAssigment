@@ -5,17 +5,17 @@ Web app page
     + [ ] New products / Home
  - [ ] View products by categories
  - [ ] View new products
-   + [ ] Products list [List all products in DESC order by createdAt field/Each product has buttons for add to cart (button for increase/decrese number of added item)/Pagination]
- - [ ] View product detail
-   + [ ] View detail information of a product
+   + [x] Products list [List all products in DESC order by createdAt field/Each product has buttons for add to cart (button for increase/decrese number of added item)/Pagination]
+ - [x] View product detail
+   + [x] View detail information of a product
    + [x] Has a button to add this product to cart
-   + [ ] Input for enter number of items to add to cart
+   + [x] Input for enter number of items to add to cart
  - [ ] Manage cart
    + [x] List all items in cart
    + [x] Remove an item from cart
-   + [ ] Increase/Decrease number of items in cart
- - [ ] Sign In / Sign Up
- - [ ] Logout
+   + [x] Increase/Decrease number of items in cart
+ - [x] Sign In / Sign Up
+ - [ ] Logout 
  // Optional
  - [ ] Create an order
  - [ ] Manage orders
@@ -24,7 +24,9 @@ Web app page
  - [ ] User's profile page
    + [ ] View user's information
    + [ ] Edit user's information
-Admin page
+- 
+- 
+- Admin page
  - [ ] Manage products
     + [ ] List all produts (must hav pagination)
     + [ ] Create new product
@@ -37,11 +39,13 @@ Admin page
     + [ ] Remove category (soft delete)
  - [ ] Manage order
     + [ ] List all order
-    + [ ] View order detail (Customer information/List selected products/Total price/Promotion if existed)
+    + [ ] View order detail (Customer information/List selected products/Total price/Promotion if existed)m
     + [ ] Manage order status (New - Order is created/Delevering - Order is delivering to customer/Delivered - Order is delivered to customer)
     + [ ] Mange payment status of an order (Unpaid/Paid)
     + [ ] Accept an order
     + [ ] Reject an order
+   - 
+   - 
  - [ ] Manage Users (optional)
  - [ ] Promotion (optional)
  - [ ] Online payment (optional)

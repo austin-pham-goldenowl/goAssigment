@@ -5,7 +5,7 @@ import _TextInput from "../common/_TextInput";
 import CartItemComp from "./CartItemComp";
 // import { Box } from "@material-ui/core";
 
-const CartListComp = ({ orders, deleteFromCart }) => {
+const CartListComp = ({ orders, deleteFromCart, addToCart }) => {
   // const list = [
   //   "Monster Hunter: World",
   //   "Resident Evil 5",
@@ -27,7 +27,14 @@ const CartListComp = ({ orders, deleteFromCart }) => {
             <div>
               <CartItemComp
                 title={order.title}
+                quantity={order.quantity}
                 onRemoveClick={() => deleteFromCart(order.id)}
+                onIncreaseClick={() =>
+                  addToCart(order.title, parseInt(order.quantity) + 1, order.price)
+                }
+                onDecreaseClick={() =>
+                  addToCart(order.title, parseInt(order.quantity) - 1, order.price)
+                }
               />
               <Divider />
             </div>

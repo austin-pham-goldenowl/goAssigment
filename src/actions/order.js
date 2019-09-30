@@ -4,12 +4,14 @@
 let nextToCartItem = 0;
 
 //addTodo action
-export const addToCart = (title, cost) => ({
+export const addToCart = (title, quantity, price) => ({
   type: "ADD_TO_CART",
   //id = nextToCartItem then +1
   id: nextToCartItem++,
   title,
-  cost
+  quantity,
+  price,
+  cost: quantity * price
 });
 
 // export const updateTodo = (id, newItem, newDate, newNote) => ({
