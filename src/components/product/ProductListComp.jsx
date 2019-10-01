@@ -42,68 +42,122 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ProductListComp = ({ isLoginSuccess }) => {
-  const ITEM_PER_PAGE = 15;
+const ProductListComp = ({ isLoginSuccess, category }) => {
+  const list = [...new Array(85).keys()];
+  const ITEM_PER_PAGE = 6;
   const MAX_PAGE_SHOWN = 8;
   const classes = useStyles();
   const [pagination, setPagination] = React.useState({
     pageNum: 0,
-    start: 0,
-    end: ITEM_PER_PAGE
+    start: list.length - 1,
+    end:
+      category === -1
+        ? list.length - 1 - ITEM_PER_PAGE
+        : list.length - 1 - 9 * ITEM_PER_PAGE
   });
 
   const handleClick = pageNum => {
     setPagination({
       pageNum,
-      start: pageNum * ITEM_PER_PAGE,
-      end: (pageNum + 1) * ITEM_PER_PAGE
+      start:
+        category === -1
+          ? list.length - 1 - pageNum * ITEM_PER_PAGE
+          : list.length - 1 - pageNum * 9 * ITEM_PER_PAGE,
+      end:
+        category === -1
+          ? list.length - 1 - pageNum * ITEM_PER_PAGE - ITEM_PER_PAGE
+          : list.length - 1 - (pageNum + 1) * 9 * ITEM_PER_PAGE
     });
   };
 
-  const list = [...new Array(90).keys()];
+  console.log("category", category);
+  const filteredList =
+    category === -1
+      ? list.reverse()
+      : list.filter(item => item % 9 === category).reverse();
+
+  console.log("filtered", filteredList);
+
   return (
     <React.Fragment>
       <CssBaseline />
       <main>
         <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>
-            {list.map(item => {
-              let randomPrice = (Math.random() * 200).toFixed(2);
-              let itemImage =
-                item % 5 === 0
-                  ? "https://i.redd.it/ijf7zto8tll01.jpg"
-                  : item % 3 === 0
-                  ? "https://pbs.twimg.com/media/DcshPU3VwAAxkh8.jpg"
-                  : item % 2 === 0
-                  ? "https://i.pinimg.com/originals/4c/f7/d4/4cf7d436c53382fcc9050817d418673a.png"
-                  : "https://i.pinimg.com/originals/a5/40/6b/a5406bf9caa49cc8e17d58100015d2d2.jpg";
+            {category === -1
+              ? filteredList.map(item => {
+                  let randomPrice = (Math.random() * 200).toFixed(2);
+                  let itemImage =
+                    item % 5 === 0
+                      ? "https://i.redd.it/ijf7zto8tll01.jpg"
+                      : item % 3 === 0
+                      ? "https://pbs.twimg.com/media/DcshPU3VwAAxkh8.jpg"
+                      : item % 2 === 0
+                      ? "https://i.pinimg.com/originals/4c/f7/d4/4cf7d436c53382fcc9050817d418673a.png"
+                      : "https://i.pinimg.com/originals/a5/40/6b/a5406bf9caa49cc8e17d58100015d2d2.jpg";
+                  // let itemCategory = item % 9;
 
-              return (
-                item >= pagination.start &&
-                item < pagination.end && (
-                  <Grid item key={item} xs={12} sm={6} md={4}>
-                    <ProductItemComp
-                      isLoginSuccess={isLoginSuccess}
-                      title={item}
-                      image={itemImage}
-                      price={randomPrice}
-                      detailsButton={
-                        <ProductDetailsComp
+                  return (
+                    item <= pagination.start &&
+                    item > pagination.end && (
+                      <Grid item key={item} xs={12} sm={6} md={4}>
+                        <ProductItemComp
                           isLoginSuccess={isLoginSuccess}
                           title={item}
                           image={itemImage}
                           price={randomPrice}
+                          detailsButton={
+                            <ProductDetailsComp
+                              isLoginSuccess={isLoginSuccess}
+                              title={item}
+                              image={itemImage}
+                              price={randomPrice}
+                            />
+                          }
                         />
-                      }
-                    />
-                  </Grid>
-                )
-              );
-            })}
+                      </Grid>
+                    )
+                  );
+                })
+              : filteredList.map(item => {
+                  let randomPrice = (Math.random() * 200).toFixed(2);
+                  let itemImage =
+                    item % 5 === 0
+                      ? "https://i.redd.it/ijf7zto8tll01.jpg"
+                      : item % 3 === 0
+                      ? "https://pbs.twimg.com/media/DcshPU3VwAAxkh8.jpg"
+                      : item % 2 === 0
+                      ? "https://i.pinimg.com/originals/4c/f7/d4/4cf7d436c53382fcc9050817d418673a.png"
+                      : "https://i.pinimg.com/originals/a5/40/6b/a5406bf9caa49cc8e17d58100015d2d2.jpg";
+                  // let itemCategory = item % 9;
+                  console.log(pagination.start, pagination.end);
+
+                  return (
+                    item <= pagination.start &&
+                    item > pagination.end && (
+                      <Grid item key={item} xs={12} sm={6} md={4}>
+                        <ProductItemComp
+                          isLoginSuccess={isLoginSuccess}
+                          title={item}
+                          image={itemImage}
+                          price={randomPrice}
+                          detailsButton={
+                            <ProductDetailsComp
+                              isLoginSuccess={isLoginSuccess}
+                              title={item}
+                              image={itemImage}
+                              price={randomPrice}
+                            />
+                          }
+                        />
+                      </Grid>
+                    )
+                  );
+                })}
           </Grid>
           <br />
           <_Pagination
-            list={list}
+            list={filteredList}
             itemPerPage={ITEM_PER_PAGE}
             pageNum={pagination.pageNum}
             maxPage={MAX_PAGE_SHOWN}

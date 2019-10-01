@@ -1,7 +1,7 @@
 import React from "react";
 import _Drawer from "../common/_Drawer";
 
-const CategoryDrawerComp = () => {
+const CategoryDrawerComp = ({ onClick }) => {
   const genreList = [
     "Action",
     "Action-adventure",
@@ -13,7 +13,8 @@ const CategoryDrawerComp = () => {
     "Other notable genres",
     "Idle gaming"
   ];
-  return <_Drawer list={genreList} text="Category"/>;
+
+  return <_Drawer list={genreList} text="Category" onClick={onClick} />;
 };
 
 export default CategoryDrawerComp;

@@ -21,7 +21,8 @@ const UserAuthDialogComp = ({
   isLoginSuccess,
   handleUserNameChange,
   handlePasswordChange,
-  onSubmit
+  onSubmit,
+  logout
 }) => {
   const [open, setOpen] = React.useState(false);
 
@@ -35,11 +36,10 @@ const UserAuthDialogComp = ({
   return (
     <div>
       <_Button
-        disabled={isLoginSuccess}
         color="inherit"
-        onClick={handleClickOpen}
+        onClick={!isLoginSuccess ? handleClickOpen : logout}
       >
-        Sign In
+        {!isLoginSuccess ? "Sign In" : "Sign Out"}
       </_Button>
       <_Dialog
         open={!isLoginSuccess ? open : !isLoginSuccess}

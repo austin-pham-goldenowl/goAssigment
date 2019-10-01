@@ -21,7 +21,7 @@ const CartListComp = ({ orders, deleteFromCart, addToCart }) => {
   return (
     <div style={{ marginRight: 5, marginTop: 5 }}>
       <center>
-        {orders.map(order => {
+        {orders.reverse().map(order => {
           total += Number(order.cost);
           return (
             <div>
@@ -30,10 +30,10 @@ const CartListComp = ({ orders, deleteFromCart, addToCart }) => {
                 quantity={order.quantity}
                 onRemoveClick={() => deleteFromCart(order.id)}
                 onIncreaseClick={() =>
-                  addToCart(order.title, parseInt(order.quantity) + 1, order.price)
+                  addToCart(order.title, order.quantity + 1, order.price)
                 }
                 onDecreaseClick={() =>
-                  addToCart(order.title, parseInt(order.quantity) - 1, order.price)
+                  addToCart(order.title, order.quantity - 1, order.price)
                 }
               />
               <Divider />

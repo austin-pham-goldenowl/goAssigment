@@ -21,7 +21,7 @@ import LogInCont from "../../containers/LogInCont";
 //       threshold: 0,
 //       target: window ? window() : undefined,
 //     });
-  
+
 //     return React.cloneElement(children, {
 //       elevation: trigger ? 4 : 0,
 //     });
@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const NavigationBar = () => {
+const NavigationBar = ({ onDrawerClick, onHomeClick }) => {
   const classes = useStyles();
 
   return (
@@ -51,14 +51,17 @@ const NavigationBar = () => {
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
+            onClick={onHomeClick}
           >
             <GamepadIcon />
           </IconButton>
           <_Typography variant="h6" className={classes.title}>
             eGameShop
           </_Typography>
-          <_Button color="inherit">Home</_Button>
-          <CategoryDrawerComp />
+          <_Button color="inherit" onClick={onHomeClick}>
+            Home
+          </_Button>
+          <CategoryDrawerComp onClick={onDrawerClick} />
           <LogInCont />
         </Toolbar>
       </AppBar>

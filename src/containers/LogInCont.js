@@ -24,7 +24,7 @@ class LogInCont extends React.Component {
   handlePasswordChange = e => this.setState({ password: e.target.value });
 
   render() {
-    let { isLoginSuccess } = this.props;
+    let { isLoginSuccess, logout } = this.props;
 
     return (
       <UserAuthDialogComp
@@ -35,6 +35,7 @@ class LogInCont extends React.Component {
         handlePasswordChange={this.handlePasswordChange}
         onSubmit={this.onSubmit}
         isLoginSuccess={isLoginSuccess}
+        logout={logout}
       />
     );
   }

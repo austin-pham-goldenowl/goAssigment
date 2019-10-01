@@ -7,8 +7,13 @@ import Paper from "@material-ui/core/Paper";
 // import { flexbox } from "@material-ui/system";
 import Box from "@material-ui/core/Box";
 
-const CartItemComp = ({ title, quantity, onRemoveClick, onIncreaseClick, onDecreaseClick }) => {
-
+const CartItemComp = ({
+  title,
+  quantity,
+  onRemoveClick,
+  onIncreaseClick,
+  onDecreaseClick
+}) => {
   return (
     <Paper>
       <Box display="flex">

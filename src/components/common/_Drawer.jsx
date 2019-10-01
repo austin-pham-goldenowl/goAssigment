@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   }
 });
 
-const _Drawer = ({ text, list, ...props }) => {
+const _Drawer = ({ text, list, onClick, ...props }) => {
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -52,7 +52,7 @@ const _Drawer = ({ text, list, ...props }) => {
         {list.map((text, index) => (
           <div>
             <Divider />
-            <ListItem button key={text}>
+            <ListItem button key={index} onClick={() => onClick(index)}>
               <ListItemText primary={text} />
             </ListItem>
             <Divider />
